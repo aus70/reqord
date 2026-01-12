@@ -251,7 +251,7 @@ defmodule Mix.Tasks.Reqord.Audit do
       exit({:shutdown, 0})
     end
 
-    unless Enum.empty?(issues.secrets) or opts[:unused_only] or opts[:stale_days] do
+    if !(Enum.empty?(issues.secrets) or opts[:unused_only] or opts[:stale_days]) do
       Mix.Shell.IO.error("\n⚠ Potential Secrets Found (#{length(issues.secrets)}):\n")
 
       Enum.each(issues.secrets, fn issue ->
@@ -261,7 +261,7 @@ defmodule Mix.Tasks.Reqord.Audit do
       end)
     end
 
-    unless Enum.empty?(issues.stale) or opts[:secrets_only] or opts[:unused_only] do
+    if !(Enum.empty?(issues.stale) or opts[:secrets_only] or opts[:unused_only]) do
       Mix.Shell.IO.info("\n⏰ Stale Cassettes (#{length(issues.stale)}):\n")
 
       Enum.each(issues.stale, fn issue ->
@@ -269,7 +269,7 @@ defmodule Mix.Tasks.Reqord.Audit do
       end)
     end
 
-    unless Enum.empty?(issues.unused) or opts[:secrets_only] or opts[:stale_days] do
+    if !(Enum.empty?(issues.unused) or opts[:secrets_only] or opts[:stale_days]) do
       Mix.Shell.IO.info("\n🗑  Unused Cassettes (#{length(issues.unused)}):\n")
 
       Enum.each(issues.unused, fn issue ->

@@ -143,11 +143,11 @@ defmodule Mix.Tasks.Reqord.Show do
       Mix.Shell.IO.info("═══ Entry #{idx} ═══")
       Mix.Shell.IO.info("Key: #{entry["key"]}\n")
 
-      unless opts[:response_only] do
+      if !opts[:response_only] do
         show_request(entry["req"], opts)
       end
 
-      unless opts[:request_only] do
+      if !opts[:request_only] do
         show_response(entry["resp"], opts)
       end
 
@@ -166,7 +166,7 @@ defmodule Mix.Tasks.Reqord.Show do
 
     headers = req["headers"] || %{}
 
-    unless Enum.empty?(headers) do
+    if !Enum.empty?(headers) do
       Mix.Shell.IO.info("│ Headers:")
 
       Enum.each(headers, fn {key, value} ->
@@ -183,7 +183,7 @@ defmodule Mix.Tasks.Reqord.Show do
 
     headers = resp["headers"] || %{}
 
-    unless Enum.empty?(headers) do
+    if !Enum.empty?(headers) do
       Mix.Shell.IO.info("│ Headers:")
 
       Enum.each(headers, fn {key, value} ->

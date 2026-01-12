@@ -41,7 +41,7 @@ defmodule Reqord.JSON.Jason do
   # Private functions
 
   defp ensure_jason_available! do
-    unless Code.ensure_loaded?(Jason) do
+    if !Code.ensure_loaded?(Jason) do
       raise """
       Jason is not available.
 

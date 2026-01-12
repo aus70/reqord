@@ -78,7 +78,7 @@ defmodule Reqord.CassetteState do
     name = state_name(cassette_path)
 
     # Ensure GenServer exists
-    unless Process.whereis(name) do
+    if !Process.whereis(name) do
       start_for_cassette(cassette_path)
     end
 
@@ -94,7 +94,7 @@ defmodule Reqord.CassetteState do
     name = state_name(cassette_path)
 
     # Ensure GenServer exists
-    unless Process.whereis(name) do
+    if !Process.whereis(name) do
       start_for_cassette(cassette_path)
     end
 
@@ -109,7 +109,7 @@ defmodule Reqord.CassetteState do
     name = state_name(cassette_path)
 
     # Ensure GenServer exists
-    unless Process.whereis(name) do
+    if !Process.whereis(name) do
       start_for_cassette(cassette_path)
     end
 
@@ -124,7 +124,7 @@ defmodule Reqord.CassetteState do
     name = state_name(cassette_path)
 
     # Ensure GenServer exists
-    unless Process.whereis(name) do
+    if !Process.whereis(name) do
       start_for_cassette(cassette_path)
     end
 

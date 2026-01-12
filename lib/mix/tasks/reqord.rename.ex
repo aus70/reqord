@@ -47,7 +47,7 @@ defmodule Mix.Tasks.Reqord.Rename do
 
     cassette_dir = opts[:dir] || @cassette_dir
 
-    unless File.dir?(cassette_dir) do
+    if !File.dir?(cassette_dir) do
       Mix.Shell.IO.error("Cassette directory not found: #{cassette_dir}")
       exit({:shutdown, 1})
     end
@@ -74,7 +74,7 @@ defmodule Mix.Tasks.Reqord.Rename do
     from_path = Path.join(dir, from)
     to_path = Path.join(dir, to)
 
-    unless File.exists?(from_path) do
+    if !File.exists?(from_path) do
       Mix.Shell.IO.error("Source cassette not found: #{from_path}")
       exit({:shutdown, 1})
     end

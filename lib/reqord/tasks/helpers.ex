@@ -107,7 +107,7 @@ defmodule Reqord.Tasks.Helpers do
   """
   @spec ensure_cassette_exists!(String.t()) :: :ok
   def ensure_cassette_exists!(path) do
-    unless File.exists?(path) do
+    if !File.exists?(path) do
       Mix.Shell.IO.error("Cassette not found: #{path}")
       exit({:shutdown, 1})
     end
@@ -131,7 +131,7 @@ defmodule Reqord.Tasks.Helpers do
   """
   @spec ensure_directory_exists!(String.t()) :: :ok
   def ensure_directory_exists!(dir) do
-    unless File.dir?(dir) do
+    if !File.dir?(dir) do
       Mix.Shell.IO.error("Directory not found: #{dir}")
       exit({:shutdown, 1})
     end

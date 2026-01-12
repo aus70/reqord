@@ -49,7 +49,7 @@ defmodule Reqord.JSON.Poison do
   # Private functions
 
   defp ensure_poison_available! do
-    unless Code.ensure_loaded?(Poison) do
+    if !Code.ensure_loaded?(Poison) do
       raise """
       Poison is not available.
 

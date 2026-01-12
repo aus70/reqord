@@ -58,7 +58,7 @@ defmodule Mix.Tasks.Reqord.Prune do
 
     report_actions(actions, opts)
 
-    unless opts[:dry_run] do
+    if !opts[:dry_run] do
       if opts[:force] == true or confirm_prune(actions) do
         execute_actions(actions, opts)
         Mix.Shell.IO.info("\n✓ Prune completed!")
@@ -172,7 +172,7 @@ defmodule Mix.Tasks.Reqord.Prune do
     delete_files = Enum.filter(actions, &(&1.type == :delete_file))
     dedup_files = Enum.filter(actions, &(&1.type == :remove_duplicates))
 
-    unless Enum.empty?(delete_files) do
+    if !Enum.empty?(delete_files) do
       Mix.Shell.IO.info("Files to delete (#{length(delete_files)}):\n")
 
       Enum.each(delete_files, fn action ->
@@ -181,7 +181,7 @@ defmodule Mix.Tasks.Reqord.Prune do
       end)
     end
 
-    unless Enum.empty?(dedup_files) do
+    if !Enum.empty?(dedup_files) do
       Mix.Shell.IO.info("Files with duplicates to clean (#{length(dedup_files)}):\n")
 
       Enum.each(dedup_files, fn action ->
