@@ -31,19 +31,19 @@ defmodule Reqord.JSON.Poison do
   @impl Reqord.JSON
   def encode!(data) do
     ensure_poison_available!()
-    Poison.encode!(data)
+    apply(Poison, :encode!, [data])
   end
 
   @impl Reqord.JSON
   def decode(binary) do
     ensure_poison_available!()
-    Poison.decode(binary)
+    apply(Poison, :decode, [binary])
   end
 
   @impl Reqord.JSON
   def decode!(binary) do
     ensure_poison_available!()
-    Poison.decode!(binary)
+    apply(Poison, :decode!, [binary])
   end
 
   # Private functions
